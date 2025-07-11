@@ -126,11 +126,11 @@ jobs:
           rustup run stable cargo build --manifest-path ./rust/Cargo.toml -p rust_lib_wlist_ui --release --target x86_64-pc-windows-msvc --target-dir ./build/windows/x64/plugins/rust_lib_wlist_ui/cargokit_build
           flutter build windows --release --split-debug-info=./symbols
 
-      - name: Upload symbols
-        uses: actions/upload-artifact@v4
-        with:
-          name: wlist_ui-windows-x86_64-symbols
-          path: D:/wlist_ui/symbols
+#      - name: Upload symbols
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: wlist_ui-windows-x86_64-symbols
+#          path: D:/wlist_ui/symbols
 
       - name: Package exe
         id: package-exe
@@ -268,11 +268,11 @@ jobs:
           rustup run stable cargo build --manifest-path ./rust/Cargo.toml -p rust_lib_wlist_ui --release --target x86_64-apple-darwin --target-dir ./build/macos/Build/Intermediates.noindex/Pods.build/Release/rust_lib_wlist_ui.build
           flutter build macos --release --split-debug-info=./symbols
 
-      - name: Upload symbols
-        uses: actions/upload-artifact@v4
-        with:
-          name: wlist_ui-macos-symbols
-          path: ./wlist_ui/symbols
+#      - name: Upload symbols
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: wlist_ui-macos-symbols
+#          path: ./wlist_ui/symbols
 
       - name: Package dmg
         id: package-dmg
@@ -561,11 +561,11 @@ jobs:
           rustup run stable cargo build --manifest-path ./rust/Cargo.toml -p rust_lib_wlist_ui --release --target x86_64-unknown-linux-gnu --target-dir ./build/linux/x64/release/plugins/rust_lib_wlist_ui/cargokit_build
           flutter build linux --release --target-platform linux-x64 --split-debug-info=./symbols
 
-      - name: Upload symbols
-        uses: actions/upload-artifact@v4
-        with:
-          name: wlist_ui-linux-x86_64-symbols
-          path: ./wlist_ui/symbols
+#      - name: Upload symbols
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: wlist_ui-linux-x86_64-symbols
+#          path: ./wlist_ui/symbols
 
       - name: Package deb
         id: package-deb
@@ -619,19 +619,18 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: Move artifacts
-        continue-on-error: true
         run: |
           tree
           mkdir ./artifacts
-          mv wlist_ui-windows-x86_64-exe/*/wlist_ui-*-windows-setup.exe ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.exe
-          mv wlist_ui-windows-x86_64-msix/*/wlist_ui-*-windows.msix ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.msix
-          mv wlist_ui-windows-x86_64-zip/*/wlist_ui-*-windows.zip ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.zip
-          mv wlist_ui-macos-dmg/*/wlist_ui-*-macos.dmg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.dmg
-          mv wlist_ui-macos-pkg/*/wlist_ui-*-macos.pkg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.pkg
-          mv wlist_ui-macos-zip/*/wlist_ui-*-macos.zip ./artifacts/wlist_ui-${{ github.ref_name }}-macos.zip
-          mv wlist_ui-linux-x86_64-deb/*/wlist_ui-*-linux.deb ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.deb
-          mv wlist_ui-linux-x86_64-rpm/*/wlist_ui-*-linux.rpm ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.rpm
-          mv wlist_ui-linux-x86_64-zip/*/wlist_ui-*-linux.zip ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.zip
+          mv wlist_ui-windows-x86_64-exe/*/wlist_ui-*-windows-setup.exe ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.exe || true
+          mv wlist_ui-windows-x86_64-msix/*/wlist_ui-*-windows.msix ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.msix || true
+          mv wlist_ui-windows-x86_64-zip/*/wlist_ui-*-windows.zip ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.zip || true
+          mv wlist_ui-macos-dmg/*/wlist_ui-*-macos.dmg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.dmg || true
+          mv wlist_ui-macos-pkg/*/wlist_ui-*-macos.pkg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.pkg || true
+          mv wlist_ui-macos-zip/*/wlist_ui-*-macos.zip ./artifacts/wlist_ui-${{ github.ref_name }}-macos.zip || true
+          mv wlist_ui-linux-x86_64-deb/*/wlist_ui-*-linux.deb ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.deb || true
+          mv wlist_ui-linux-x86_64-rpm/*/wlist_ui-*-linux.rpm ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.rpm || true
+          mv wlist_ui-linux-x86_64-zip/*/wlist_ui-*-linux.zip ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.zip || true
           tree
 
       - name: Release
