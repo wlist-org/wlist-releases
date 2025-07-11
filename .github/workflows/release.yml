@@ -621,17 +621,18 @@ jobs:
       - name: Move artifacts
         continue-on-error: true
         run: |
+          tree
           mkdir ./artifacts
-          mv wlist_ui-windows-x86_64-exe/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-windows-setup.exe ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.exe
-          mv wlist_ui-windows-x86_64-msix/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-windows.msix ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.msix
-          mv wlist_ui-windows-x86_64-zip/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-windows.zip ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.zip
-          mv wlist_ui-macos-dmg/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-macos.dmg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.dmg
-          mv wlist_ui-macos-pkg/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-macos.pkg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.pkg
-          mv wlist_ui-macos-zip/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-macos.zip ./artifacts/wlist_ui-${{ github.ref_name }}-macos.zip
-          mv wlist_ui-linux-x86_64-deb/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-linux.deb ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.deb
-          mv wlist_ui-linux-x86_64-rpm/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-linux.rpm ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.rpm
-          mv wlist_ui-linux-x86_64-zip/${{ github.ref_name }}/wlist_ui-${{ github.ref_name }}-linux.zip ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.zip
-          tree ./artifacts
+          mv wlist_ui-windows-x86_64-exe/*/wlist_ui-*-windows-setup.exe ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.exe
+          mv wlist_ui-windows-x86_64-msix/*/wlist_ui-*-windows.msix ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.msix
+          mv wlist_ui-windows-x86_64-zip/*/wlist_ui-*-windows.zip ./artifacts/wlist_ui-${{ github.ref_name }}-windows-x86_64.zip
+          mv wlist_ui-macos-dmg/*/wlist_ui-*-macos.dmg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.dmg
+          mv wlist_ui-macos-pkg/*/wlist_ui-*-macos.pkg ./artifacts/wlist_ui-${{ github.ref_name }}-macos.pkg
+          mv wlist_ui-macos-zip/*/wlist_ui-*-macos.zip ./artifacts/wlist_ui-${{ github.ref_name }}-macos.zip
+          mv wlist_ui-linux-x86_64-deb/*/wlist_ui-*-linux.deb ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.deb
+          mv wlist_ui-linux-x86_64-rpm/*/wlist_ui-*-linux.rpm ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.rpm
+          mv wlist_ui-linux-x86_64-zip/*/wlist_ui-*-linux.zip ./artifacts/wlist_ui-${{ github.ref_name }}-linux-x86_64.zip
+          tree
 
       - name: Release
         uses: softprops/action-gh-release@v2
