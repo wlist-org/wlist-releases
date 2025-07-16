@@ -1,0 +1,23 @@
+name: Trigger on tags
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  dispatch:
+    name: Dispatch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch release
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          event-type: release
+          client-payload: |-
+            {
+              "version": "${{ github.ref_name }}"
+            }
