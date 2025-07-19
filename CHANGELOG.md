@@ -1,9 +1,16 @@
 # Change Log
 
+## Wlist v1.0.4 (ui v0.1.4, internal v0.4.3, api v0.2.1) - 2025-07-19
+
+1. [storage(lanzou)] Fix 404 error when download recently uploaded files.
+2. [ui] Correct back tooltip on tasks page head.
+3. [ui] Optimize tasks item, add type icon prefix.
+4. [user] Fix crash on activation.
+
 ## Wlist v1.0.3 (ui v0.1.3, internal v0.4.2, api v0.2.1) - 2025-07-18
 
 1. [ui] Fix page redirection between `login`/`register`/`forget_password`.
-2. [ui] Beautify tasks page headers, add back button.
+2. [ui] Beautify tasks page header, add back button.
 3. [ui] Fix `inappwebview` crashed on `Windows`.
 4. [ui] Optimize button loading animation.
 5. [user] Fix user roles remain unchanged after activation.
